@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MOIRÀ - Shared Circles</title>
+    <title>MOIRÀ - My Closet</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body id="page-circles">
+<body id="page-closet">
     <div class="background-container">
         <img class="bg-img" src="https://images.unsplash.com/photo-1549480017-d77415e4787a?auto=format&fit=crop&q=80&w=2000" alt="background">
         <div class="bg-overlay"></div>
@@ -18,50 +18,38 @@
         <header class="app-header">
             <div class="logo-box">
                 <h1><i>M</i>oira</h1>
-                <span class="subtitle">Style, Synced</span>
+                <span class="subtitle">My Digital Twin</span>
             </div>
-            <div class="avatars-scroll" id="top-avatars">
-                <!-- Avatars injected here -->
+            <div class="user-profile-mini">
+                <img src="https://i.pravatar.cc/150?u=me" style="width:40px; height:40px; border-radius:50%; border:2px solid var(--snow);">
             </div>
         </header>
 
         <div class="views-container">
             <div class="view active">
-                <div class="breadcrumbs">
-                    <span class="pill outline">CIRCLES</span>
-                    <span class="bold-text">UNIVERSITY ROOMIES</span>
+                <div class="section-title" style="margin-top:10px;">
+                    My Digital Wardrobe
                 </div>
-
-                <div class="alert-box">
-                    <strong>FRIEND MATCH:</strong> <span id="current-friend-alert">Liam</span> has items that match your vibe!
-                </div>
-
-                <div class="section-title">
-                    <span id="current-friend-name">Liam</span>'s Wardrobe - <span id="item-count">0</span> items
-                </div>
-
                 <div class="scroll-wrapper">
-                    <div class="clothing-grid" id="wardrobe-grid">
-                        <!-- Items injected here -->
+                    <div class="clothing-grid" id="my-wardrobe-grid">
+                        <!-- My items injected here -->
                     </div>
                 </div>
-
-                <div class="bottom-actions-float">
-                    <button class="btn btn-primary btn-block" onclick="app.requestToBorrow()">REQUEST TO BORROW</button>
-                    <div class="upload-btn-container" onclick="app.openUploadModal()">
-                        <button class="btn-upload"><i class='bx bx-upload'></i></button>
-                        <span class="upload-text">UPLOAD YOURS</span>
+                <div class="bottom-actions-float" style="justify-content: flex-end">
+                     <div class="upload-btn-container" onclick="app.openUploadModal()">
+                        <button class="btn-upload" style="background:var(--opera-mauve); border-color:var(--opera-mauve);"><i class='bx bx-plus'></i></button>
+                        <span class="upload-text">ADD ITEM</span>
                     </div>
                 </div>
             </div>
         </div>
 
         <nav class="bottom-nav">
-            <a href="my-closet.html" class="nav-item">
+            <a href="my-closet.html" class="nav-item active">
                 <i class='bx bx-closet'></i>
                 <span>My Closet</span>
             </a>
-            <a href="index.html" class="nav-item active">
+            <a href="index.html" class="nav-item">
                 <i class='bx bx-group'></i>
                 <span>Circles</span>
             </a>
@@ -74,13 +62,6 @@
 
     <!-- Modal Overlay -->
     <div id="modal-overlay" class="modal-overlay" onclick="app.closeModalOnOutsideClick(event)">
-        <div id="modal-try-on" class="modal-card">
-            <button class="close-btn" onclick="app.closeModal()"><i class='bx bx-x'></i></button>
-            <h3 style="margin-bottom:10px;">Virtual Try-On</h3>
-            <p style="font-size: 0.8rem; opacity: 0.7; margin-bottom: 20px;">2D-to-3D Metric Mapping engaged.</p>
-            <div class="try-on-scene" id="try-on-scene"></div>
-            <button class="btn btn-primary btn-block" style="margin-top:20px;" onclick="app.closeModal()">Finished</button>
-        </div>
         <div id="modal-upload" class="modal-card">
             <button class="close-btn" onclick="app.closeModal()"><i class='bx bx-x'></i></button>
             <h3 style="margin-bottom:20px;">Digitize Garment</h3>

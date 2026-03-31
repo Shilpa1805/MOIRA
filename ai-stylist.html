@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MOIRÀ - Shared Circles</title>
+    <title>MOIRÀ - AI Stylist</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body id="page-circles">
+<body id="page-stylist">
     <div class="background-container">
         <img class="bg-img" src="https://images.unsplash.com/photo-1549480017-d77415e4787a?auto=format&fit=crop&q=80&w=2000" alt="background">
         <div class="bg-overlay"></div>
@@ -18,39 +18,29 @@
         <header class="app-header">
             <div class="logo-box">
                 <h1><i>M</i>oira</h1>
-                <span class="subtitle">Style, Synced</span>
-            </div>
-            <div class="avatars-scroll" id="top-avatars">
-                <!-- Avatars injected here -->
+                <span class="subtitle">Smart Recommendations</span>
             </div>
         </header>
 
         <div class="views-container">
             <div class="view active">
-                <div class="breadcrumbs">
-                    <span class="pill outline">CIRCLES</span>
-                    <span class="bold-text">UNIVERSITY ROOMIES</span>
+                <div class="section-title" style="margin-top:10px;">
+                    Closet-First Stylist
                 </div>
-
-                <div class="alert-box">
-                    <strong>FRIEND MATCH:</strong> <span id="current-friend-alert">Liam</span> has items that match your vibe!
-                </div>
-
-                <div class="section-title">
-                    <span id="current-friend-name">Liam</span>'s Wardrobe - <span id="item-count">0</span> items
-                </div>
-
                 <div class="scroll-wrapper">
-                    <div class="clothing-grid" id="wardrobe-grid">
-                        <!-- Items injected here -->
+                    <div class="stylist-box glass-card">
+                        <p style="margin-bottom: 20px;">What vibe are you going for today?</p>
+                        <div class="vibe-tags">
+                            <span class="pill outline active-vibe">Sunday Brunch</span>
+                            <span class="pill outline">University Lecture</span>
+                            <span class="pill outline">Date Night</span>
+                        </div>
+                        <button class="btn btn-primary btn-block" style="margin-top:30px;" onclick="app.generateOutfit(event)">Generate Outfit</button>
                     </div>
-                </div>
-
-                <div class="bottom-actions-float">
-                    <button class="btn btn-primary btn-block" onclick="app.requestToBorrow()">REQUEST TO BORROW</button>
-                    <div class="upload-btn-container" onclick="app.openUploadModal()">
-                        <button class="btn-upload"><i class='bx bx-upload'></i></button>
-                        <span class="upload-text">UPLOAD YOURS</span>
+                    
+                    <div id="outfit-result" style="display:none; margin-top:20px;">
+                        <p class="subtitle" style="margin-bottom:10px">Prioritized Collection:</p>
+                        <div class="clothing-grid" id="outfit-grid"></div>
                     </div>
                 </div>
             </div>
@@ -61,18 +51,18 @@
                 <i class='bx bx-closet'></i>
                 <span>My Closet</span>
             </a>
-            <a href="index.html" class="nav-item active">
+            <a href="index.html" class="nav-item">
                 <i class='bx bx-group'></i>
                 <span>Circles</span>
             </a>
-            <a href="ai-stylist.html" class="nav-item">
+            <a href="ai-stylist.html" class="nav-item active">
                 <i class='bx bx-magic-wand'></i>
                 <span>AI Stylist</span>
             </a>
         </nav>
     </main>
-
-    <!-- Modal Overlay -->
+    
+    <!-- Modal Overlay for Try On -->
     <div id="modal-overlay" class="modal-overlay" onclick="app.closeModalOnOutsideClick(event)">
         <div id="modal-try-on" class="modal-card">
             <button class="close-btn" onclick="app.closeModal()"><i class='bx bx-x'></i></button>
@@ -80,15 +70,6 @@
             <p style="font-size: 0.8rem; opacity: 0.7; margin-bottom: 20px;">2D-to-3D Metric Mapping engaged.</p>
             <div class="try-on-scene" id="try-on-scene"></div>
             <button class="btn btn-primary btn-block" style="margin-top:20px;" onclick="app.closeModal()">Finished</button>
-        </div>
-        <div id="modal-upload" class="modal-card">
-            <button class="close-btn" onclick="app.closeModal()"><i class='bx bx-x'></i></button>
-            <h3 style="margin-bottom:20px;">Digitize Garment</h3>
-            <div class="upload-dropzone">
-                <i class='bx bx-image-add' style="font-size: 3rem; color: var(--opera-mauve)"></i>
-                <p style="margin-top:10px; font-size: 0.8rem">Take a flat-lay photo or upload</p>
-            </div>
-            <button class="btn btn-primary btn-block" style="margin-top:20px;" onclick="app.closeModal()">Process to 3D</button>
         </div>
     </div>
 
